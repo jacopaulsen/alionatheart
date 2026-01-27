@@ -502,21 +502,47 @@
             }, 5000);
         }
 
-        async function simulateAPICall(email) {
-            // Simulate network delay
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    // Store in localStorage for now (temporary)
-                    const signups = JSON.parse(localStorage.getItem('waitlist') || '[]');
-                    signups.push({
-                        email,
-                        timestamp: new Date().toISOString()
-                    });
-                    localStorage.setItem('waitlist', JSON.stringify(signups));
-                    resolve();
-                }, 1000);
-            });
-        }
+      async function simulateAPICall(email) {
+    // YOUR GOOGLE SHEETS WEB APP URL HERE
+    const GOOGLE_SHEETS_URL = https://script.google.com/macros/s/AKfycbw_Z2FVZHPwyMMpX1EvDnTa8tCLTzHW0x3rB9PQeqP0X2u4gld3BXMwQnZ5MZ6-bbXz/exec;
+    
+    try {
+        const response = await fetch(GOOGLE_SHEETS_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Important for Google Apps Script
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                source: 'landing_page',
+                timestamp: new Date().toISOString()
+            })
+        });
+        
+        // Also keep localStorage backup
+        const signups = JSON.parse(localStorage.getItem('waitlist') || '[]');
+        signups.push({
+            email,
+            timestamp: new Date().toISOString()
+        });
+        localStorage.setItem('waitlist', JSON.stringify(signups));
+        
+        return true;
+    } catch (error) {
+        console.error('Signup error:', error);
+        
+        // Fallback: save to localStorage if Google Sheets fails
+        const signups = JSON.parse(localStorage.getItem('waitlist') || '[]');
+        signups.push({
+            email,
+            timestamp: new Date().toISOString()
+        });
+        localStorage.setItem('waitlist', JSON.stringify(signups));
+        
+        return true;
+    }
+}
 
         // Smooth scroll for any future anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
