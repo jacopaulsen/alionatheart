@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Lion at Heart - Meditation and mindfulness powered by community. Find your Pride, meet Kiko, and grow together.">
+    <title>A Lion at Heart - Meditation Powered by Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section - Warm colors matching Kiko */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #FFB75E 0%, #ED8F03 25%, #B65FCF 75%, #667eea 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .kiko-image {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .ubuntu-quote {
+            font-size: 1.3rem;
+            color: white;
+            font-style: italic;
+            margin-bottom: 50px;
+            padding: 25px;
+            border-left: 4px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Waitlist Form */
+        .waitlist-form {
+            display: flex;
+            gap: 12px;
+            max-width: 550px;
+            margin: 0 auto 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-input {
+            flex: 1;
+            min-width: 280px;
+            padding: 20px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+
+        .email-input:focus {
+            outline: none;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn {
+            padding: 20px 45px;
+            font-size: 17px;
+            font-weight: 700;
+            background: white;
+            color: #ED8F03;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            background: #fff;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .form-message {
+            color: white;
+            font-size: 15px;
+            margin-top: 15px;
+            text-align: center;
+            min-height: 24px;
+            font-weight: 600;
+        }
+
+        .form-message.success {
+            color: #6BCB77;
+            text-shadow: 0 2px 10px rgba(107, 203, 119, 0.4);
+        }
+
+        .form-message.error {
+            color: #FFD93D;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #FFF8E8 0%, #ffffff 100%);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 45px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(237, 143, 3, 0.2);
+            border-color: #FFB75E;
+        }
+
+        .feature-icon {
+            font-size: 90px;
+            margin-bottom: 25px;
+        }
+
+        .feature-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 18px;
+        }
+
+        .feature-description {
+            font-size: 1.05rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #FFB75E 0%, #ED8F03 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mission h2 {
+            font-size: 2.8rem;
+            margin-bottom: 35px;
+            font-weight: 800;
+        }
+
+        .mission p {
+            font-size: 1.35rem;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 20px 40px;
+            background: #2D2D2D;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-kiko {
+            font-size: 70px;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .footer-meta {
+            font-size: 0.95rem;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .ubuntu-quote {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+
+            .kiko-image {
+                width: 220px;
+                height: 220px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .waitlist-form {
+                flex-direction: column;
+            }
+
+            .email-input {
+                width: 100%;
+            }
+
+            .submit-btn {
+                width: 100%;
+            }
+        }
+
+        /* Loading state */
+        .submit-btn.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .submit-btn.loading::after {
+            content: '...';
+            animation: dots 1s steps(3, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="kiko-coffee.png" alt="Kiko - Your meditation companion" class="kiko-image">
+            <h1>A Lion at Heart</h1>
+            <p class="tagline">Meditation powered by community</p>
+            <div class="ubuntu-quote">
+                "Nobody grows a lion heart alone"
+            </div>
+            
+            <form class="waitlist-form" id="waitlistForm">
+                <input 
+                    type="email" 
+                    class="email-input" 
+                    placeholder="Enter your email" 
+                    required
+                    id="emailInput"
+                    aria-label="Email address"
+                >
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Join Waitlist 🦁
+                </button>
+            </form>
+            <div class="form-message" id="formMessage"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2 class="section-title">Why A Lion at Heart?</h2>
+            <p class="section-subtitle">
+                Not another solo meditation app. This is about real connection, real support, real transformation.
+            </p>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🦁</div>
+                    <h3 class="feature-title">Meet Kiko</h3>
+                    <p class="feature-description">
+                        Your warm, encouraging AI companion. Not a bot—a friend who genuinely gets the struggle and celebrates every small win with you.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Find Your Pride</h3>
+                    <p class="feature-description">
+                        Small groups of 3-5 people who meditate together. Real accountability, real support, real friendship. Your Pride becomes family.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">Grow Together</h3>
+                    <p class="feature-description">
+                        Ubuntu philosophy: "I am because we are." Your growth helps others grow. Your courage gives others permission to be brave.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p>
+                <strong>Be kind to yourself, and to those around you.</strong>
+            </p>
+            <p>
+                We believe meditation shouldn't be a solo journey. Real transformation happens when we support each other, celebrate together, and hold space for vulnerability.
+            </p>
+            <p>
+                A Lion at Heart combines meditation practice with genuine community—because nobody grows a lion heart alone.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-kiko">🦁</div>
+            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">A Lion at Heart</h3>
+            <p class="footer-tagline">
+                Coming soon · Building in public · Growing with purpose
+            </p>
+            <p class="footer-meta">
+                © 2026 A Lion at Heart. All rights reserved.<br>
+                Made with 💚 and Ubuntu
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Waitlist form handling
+        const form = document.getElementById('waitlistForm');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const formMessage = document.getElementById('formMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            // Basic validation
+            if (!email || !isValidEmail(email)) {
+                showMessage('Please enter a valid email address', 'error');
+                return;
+            }
+
+            // Disable button and show loading
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Joining';
+            
+            try {
+                // Save to localStorage
+                const signups = JSON.parse(localStorage.getItem('waitlist') || '[]');
+                signups.push({
+                    email,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('waitlist', JSON.stringify(signups));
+                
+                // TODO: Also send to Google Sheets or your backend
+                // Add your Google Sheets Web App URL here
+                // const GOOGLE_SHEETS_URL = 'YOUR_URL_HERE';
+                // await fetch(GOOGLE_SHEETS_URL, { method: 'POST', ... });
+                
+                // Success
+                showMessage('🦁 You\'re on the list! Welcome to the Pride.', 'success');
+                emailInput.value = '';
+                
+                // Track signup
+                console.log('New signup:', email);
+                
+            } catch (error) {
+                showMessage('Something went wrong. Please try again.', 'error');
+                console.error('Signup error:', error);
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Join Waitlist 🦁';
+            }
+        });
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+            
+            // Clear message after 5 seconds
+            setTimeout(() => {
+                formMessage.textContent = '';
+                formMessage.className = 'form-message';
+            }, 5000);
+        }
+
+        // Smooth scroll animation on load
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
