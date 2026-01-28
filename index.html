@@ -517,10 +517,20 @@ await fetch(GOOGLE_SHEETS_URL, {
                 });
                 localStorage.setItem('waitlist', JSON.stringify(signups));
                 
-                // TODO: Also send to Google Sheets or your backend
-                // Add your Google Sheets Web App URL here
-                // const GOOGLE_SHEETS_URL = 'YOUR_URL_HERE';
-                // await fetch(GOOGLE_SHEETS_URL, { method: 'POST', ... });
+                // Send to Google Sheets
+const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzCdvM5yC6KvHKJi0urbZ1JSHJvF6TbTddKLTSN6Dd-dRELUDMoLINjlVPgCI6KE1uJFg/exec; //
+
+await fetch(GOOGLE_SHEETS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        email: email,
+        source: 'landing_page',
+        timestamp: new Date().toISOString()
+    })
                 
                 // Success
                 showMessage('🦁 You\'re on the list! Welcome to the Pride.', 'success');
